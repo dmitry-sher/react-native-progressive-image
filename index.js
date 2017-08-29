@@ -27,23 +27,24 @@ export default class ProgressiveImage extends Component {
   }
 
   render() {
+    const { containerStyle, style } = this.props
     return (
-      <View style={this.props.style}>
+      <View style={[containerStyle]}>
         <Image
           resizeMode="cover"
-          style={[styles.image, this.props.style]}
+          style={[styles.image, style]}
           source={this.props.placeHolderSource}
         />
         <Animated.Image
           resizeMode="cover"
-          style={[styles.image, { opacity: this.state.thumbnailOpacity }, this.props.style]}
+          style={[styles.image, { opacity: this.state.thumbnailOpacity }, style]}
           source={this.props.thumbnailSource}
           onLoad={() => this.onLoadThumbnail()}
           blurRadius={this.props.thumbnailBlurRadius}
         />
         <Animated.Image
           resizeMode="cover"
-          style={[styles.image, { opacity: this.state.imageOpacity }, this.props.style]}
+          style={[styles.image, { opacity: this.state.imageOpacity }, style]}
           source={this.props.imageSource}
           onLoad={() => this.onLoadImage()}
         />
